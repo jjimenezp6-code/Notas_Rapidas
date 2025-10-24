@@ -1,0 +1,227 @@
+/* =========================================================
+   FUENTES LOCALES (offline-friendly)
+========================================================= */
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter-400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter-500.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter-600.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter-700.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Sora';
+  src: url('/fonts/Sora-600.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Sora';
+  src: url('/fonts/Sora-700.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Tailwind */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =========================================================
+   TIPOGRAFÍA BASE Y SUAVIZADO
+========================================================= */
+html, body {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+               Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji',
+               'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* transiciones globales suaves */
+  transition: background-color .35s ease, color .35s ease;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Sora', 'Inter', sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* =========================================================
+   FONDO “PREMIUM” (CLARO/OSCURO) + TEXTURA SUTIL
+========================================================= */
+:root:not(.dark) .app-bg {
+  min-height: 100dvh;
+  background:
+    radial-gradient(1200px 600px at 80% -10%, rgba(250, 204, 21, 0.12), transparent 60%),
+    radial-gradient(900px 500px at 10% 110%, rgba(34, 197, 94, 0.10), transparent 60%),
+    linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
+  color: #0b0b0c;
+  position: relative;
+}
+:root:not(.dark) .app-bg::after {
+  content: "";
+  position: fixed; inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' opacity='0.045'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.65' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: cover;
+}
+
+.dark .app-bg {
+  min-height: 100dvh;
+  background:
+    radial-gradient(1200px 600px at 80% -10%, rgba(250, 204, 21, 0.08), transparent 60%),
+    radial-gradient(900px 500px at 10% 110%, rgba(34, 197, 94, 0.08), transparent 60%),
+    linear-gradient(180deg, #0b0b0c 0%, #0d0d10 100%);
+  color: #ffffff;
+  position: relative;
+}
+.dark .app-bg::after {
+  content: "";
+  position: fixed; inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' opacity='0.06'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.65' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: cover;
+}
+
+/* =========================================================
+   TRANSICIONES/ANIMACIONES GENERALES
+========================================================= */
+* {
+  transition:
+    background-color .25s ease,
+    color .25s ease,
+    border-color .25s ease,
+    box-shadow .25s ease,
+    transform .18s ease;
+}
+.fade-enter-active, .fade-leave-active { transition: opacity .18s ease; }
+.fade-enter-from,   .fade-leave-to     { opacity: 0; }
+
+/* para listas con <TransitionGroup name="list-fade"> */
+.list-fade-enter-active, .list-fade-leave-active { transition: all .18s ease; }
+.list-fade-enter-from,   .list-fade-leave-to     { opacity: 0; transform: translateY(6px); }
+.list-fade-move { transition: transform .18s ease; }
+
+/* entrada sutil de tarjetas individuales */
+@keyframes cardIn { from { transform: translateY(4px); opacity: 0 } to { transform: translateY(0); opacity: 1 } }
+
+/* =========================================================
+   PANEL / TARJETAS / CONTROLES
+========================================================= */
+.panel {
+  @apply rounded-xl bg-white/85 shadow-[0_8px_30px_rgba(0,0,0,0.08)] ring-1 ring-black/10;
+}
+.dark .panel { @apply bg-white/5 ring-white/10; }
+
+.card { @apply panel p-4; }
+
+.input {
+  @apply w-full rounded-lg px-3 py-2 bg-white text-black placeholder-black/40 ring-1 ring-black/10
+         focus:outline-none focus:ring-2 focus:ring-yellow-400;
+}
+.dark .input { @apply bg-white/10 text-white placeholder-white/40 ring-white/10; }
+
+.btn-primary {
+  @apply inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-yellow-400 text-black font-medium shadow
+         hover:shadow-lg active:scale-[0.98] transition;
+}
+.btn-ghost {
+  @apply inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-black/10 text-black hover:bg-black/20
+         dark:bg-white/10 dark:text-white dark:hover:bg-white/20 transition;
+}
+.btn-danger {
+  @apply inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-red-500 text-white hover:bg-red-600 transition;
+}
+
+.chip {
+  @apply px-2 py-1 rounded-full text-xs bg-black/10 text-black dark:bg-white/10 dark:text-white;
+}
+.chip.active { @apply bg-yellow-400 text-black dark:text-black; }
+
+/* =========================================================
+   TARJETA DE NOTA (premium)
+========================================================= */
+.note-card {
+  @apply rounded-xl ring-1 p-4 relative;
+  @apply bg-white ring-black/10 hover:ring-yellow-400/60;
+  transform: translateY(0);
+  animation: cardIn .18s ease-out;
+}
+.note-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+.dark .note-card {
+  @apply bg-white/5 ring-white/10 hover:ring-yellow-400/30;
+}
+
+.note-title   { @apply font-[Sora] text-base text-black dark:text-white; }
+.note-content { @apply mt-1 text-sm text-black/70 dark:text-white/60; }
+.note-tag {
+  @apply text-xs px-2 py-1 rounded-full bg-black/10 text-black ring-1 ring-black/10;
+}
+.dark .note-tag { @apply bg-white/10 text-white ring-white/10; }
+
+/* subrayado discreto del título al hover */
+.group:hover .note-title { text-decoration: underline; text-underline-offset: 3px; }
+
+/* glow sutil al hover (sin JS global) */
+.note-card { position: relative; }
+.note-card:hover { --x: 50%; --y: 30%; isolation: isolate; }
+.note-card::after {
+  content: "";
+  position: absolute; inset: 0; opacity: 0; pointer-events: none;
+  background: radial-gradient(200px 120px at var(--x,50%) var(--y,30%), rgba(250,204,21,.12), transparent 60%);
+  transition: opacity .2s ease;
+}
+.note-card:hover::after { opacity: 1; }
+
+/* “cinta” de fijada (si la usas en NoteCard.vue) */
+.note-ribbon {
+  position: absolute; left: -8px; top: -8px; transform: rotate(-45deg);
+  background: rgb(250 204 21); color: #111; font-size: 12px; font-weight: 600;
+  padding: 8px 36px; box-shadow: 0 1px 2px rgba(0,0,0,.08); border: 1px solid rgba(0,0,0,.1);
+  user-select: none; pointer-events: none;
+}
+
+/* =========================================================
+   FAB (iOS safe area + micro-animación)
+========================================================= */
+.fab {
+  position: fixed;
+  right: calc(env(safe-area-inset-right, 0px) + 16px);
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 16px);
+  z-index: 40;
+  transition: transform .18s ease, box-shadow .28s ease;
+}
+.fab:active { transform: scale(0.95); }
+.fab:hover  { box-shadow: 0 8px 20px rgba(0,0,0,0.25); }
+
+/* =========================================================
+   SCROLLBAR (discreto)
+========================================================= */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-thumb { background-color: rgba(0, 0, 0, 0.15); border-radius: 10px; }
+.dark ::-webkit-scrollbar-thumb { background-color: rgba(255, 255, 255, 0.15); }
