@@ -1020,7 +1020,7 @@ const _ZzrG4r3ZOL2vMQ3qAmWww1uKCKlWWtFkoTVqZF2BcdQ = (function(nitro) {
 
 const rootDir = "C:/Users/juanc/OneDrive/Desktop/notas-rapidas";
 
-const appHead = {"meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"name":"theme-color","content":"#facc15"},{"name":"description","content":"Tus notas rápidas siempre a mano, incluso sin conexión."},{"name":"x-build","content":"1761333255695"}],"link":[{"rel":"icon","type":"image/png","href":"/icon-192.png"},{"rel":"apple-touch-icon","href":"/apple-touch-icon.png"}],"style":[],"script":[],"noscript":[],"title":"Notas Rápidas"};
+const appHead = {"meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"name":"theme-color","content":"#facc15"},{"name":"description","content":"Tus notas rápidas siempre a mano, incluso sin conexión."},{"name":"x-build","content":"1761406094250"}],"link":[{"rel":"icon","type":"image/png","href":"/icon-192.png"},{"rel":"apple-touch-icon","href":"/apple-touch-icon.png"}],"style":[],"script":[],"noscript":[],"title":"Notas Rápidas"};
 
 const appRootTag = "div";
 

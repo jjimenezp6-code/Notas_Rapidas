@@ -139,20 +139,35 @@ const onTogglePin = async (id: string) => {
   toast(n?.pinned ? 'Nota fijada' : 'Nota desfijada', 'info')
 }
 
-// ✅ NUEVO: eliminación con opción “Deshacer”
+/**
+ * Eliminación con opción “Deshacer”
+ * + Arreglo: si estás filtrando y tras eliminar no queda nada visible,
+ *   limpiamos filtros (q/activeTag) para volver a “Todas”.
+ */
 const removeNote = async (id: string) => {
   const snap = await store.get(id)
   if (!snap) return
 
   await store.remove(id)
 
+  // 👉 Si había filtros activos y la vista filtrada quedó vacía, limpiarlos
+  if ((q.value || activeTag.value) && visible.value.length === 0 && store.notes.length > 0) {
+    q.value = ''
+    activeTag.value = ''
+  }
+
   toast('Nota eliminada', 'error', 5000, {
     label: 'Deshacer',
     run: async () => {
+      // Restaurar nota
       const created = await store.add(snap.title || '', snap.content || '')
       const newId = typeof created === 'string' ? created : created.id
+
       if (snap.tags?.length) {
         await store.update(newId, { tags: snap.tags })
+      }
+      if (snap.pinned) {
+        await store.togglePin(newId)
       }
     }
   })
